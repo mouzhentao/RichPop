@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>温馨提示 · 专属版</title>
+<style>
+body{margin:0;overflow:hidden;background:#f5f5f5;font-family:"微软雅黑",sans-serif}
+.card{position:absolute;padding:18px 28px;border-radius:12px;font-size:18px;color:#333;
+      box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:default}
+.close{position:absolute;right:6px;top:4px;font-size:18px;color:#666;cursor:pointer}
+</style>
+</head>
+<body>
+
+<script>
+/* ===== 1. 词库：暧昧 + 暴富 + 励志 + 关心 ===== */
+const tips = [
+  // 暧昧
+  "今天突然想你了，不止一点点",
+  "和你聊天，时间总是过得特别快",
+  "晚安两个字，我打了又删，删了又打",
+  "你一笑，我的世界就晴了",
+  "如果此刻你在就好了",
+  "我不贪心，只想每天多喜欢你一点",
+  "看到有趣的事，第一时间想分享给你",
+  "你的名字，是我写过最短的情诗",
+  "想牵你的手，从心动到白头",
+  "全世界都可以是你的，但你只能是我的",
+  // 暴富
+  "祝你一夜暴富，账户余额像手机号",
+  "钞票拿来当书签，随便花不眨眼",
+  "愿你日进斗金，数钱数到手抽筋",
+  "马上有钱，而且是很多的那种",
+  "余额翻倍的速度，超过体重上涨",
+  "愿你银行卡密码只有你知道，数字位数永远不够用",
+  "祝你早日实现「花钱自由」",
+  "愿你躺着赚钱，睡着涨粉，醒来暴富",
+  "钱包鼓鼓，烦恼少少",
+  "愿你富得流油，帅/美得出圈",
+  // 励志
+  "你努力的样子，真的很耀眼",
+  "别急，最好的总在不经意间出现",
+  "熬过无人问津的日子，才有诗和远方",
+  "别让平淡的生活耗尽你所有的向往",
+  "可以慢一点，但别停下前进的脚步",
+  "你配得上自己的野心，也别辜负吃过的苦",
+  "越努力越幸运，越自律越自由",
+  "山海自有归期，风雨自有相逢",
+  "乾坤未定，你我皆是黑马",
+  "愿你成为自己的太阳，无需借谁的光",
+  // 关心
+  "多喝水，多睡觉，少熬夜",
+  "天冷了，记得添衣，别让我担心",
+  "忙完记得吃饭，胃比工作重要",
+  "不舒服别硬扛，我随时在",
+  "今天有没有开心一点？",
+  "累了就歇一歇，世界不会塌",
+  "你平安健康，就是我最大的安心",
+  "别总逞强，你还有我",
+  "把烦恼调成静音，把快乐调到最大",
+  "愿你被世界温柔以待，也愿你有力量温柔待人"
+];
+
+const colors = [
+  "lightpink","skyblue","lightgreen","lavender","lightyellow",
+  "plum","coral","bisque","aquamarine","mistyrose",
+  "honeydew","lavenderblush","oldlace","peachpuff","powderblue"
+];
+
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+const randInt = (min,max) => Math.floor(Math.random()*(max-min+1))+min;
+
+function createCard(){
+  const txt = rand(tips);
+  const bg  = rand(colors);
+
+  const card = document.createElement("div");
+  card.className = "card";
+  card.style.background = bg;
+  card.textContent = txt;
+
+  const close = document.createElement("span");
+  close.className = "close";
+  close.innerHTML = "&times;";
+  close.onclick = () => card.remove();
+  card.appendChild(close);
+
+  const w = window.innerWidth, h = window.innerHeight;
+  card.style.left = randInt(0, Math.max(0, w - 260)) + "px";
+  card.style.top  = randInt(0, Math.max(0, h - 100)) + "px";
+
+  document.body.appendChild(card);
+}
+
+/* ===== 2. 速度：50 ms 一张（共 500 张）===== */
+let count = 0, max = 500, speed = 40;
+const timer = setInterval(()=>{
+  createCard();
+  if(++count >= max) clearInterval(timer);
+}, speed);
+</script>
+</body>
+</html>
